@@ -71,3 +71,17 @@ R -q -e "pak::pak('rcmdcheck')"
 R -q -e "rcmdcheck::rcmdcheck('$R_PACKAGE', args = c('--no-manual', '--as-cran'))"
 find . -name '00install.out' -exec cat {} +
 ```
+
+### Static Code Analysis (`rchk`)
+
+*From https://github.com/kalibera/cran-checks/tree/master/rchk#readme*
+
+```sh
+docker pull kalibera/rchk
+mkdir packages
+cp lazy_1.2-16.tar.gz packages
+# On Unix
+docker run -v `pwd`/packages:/rchk/packages kalibera/rchk /rchk/packages/lazy_1.2-16.tar.gz 
+# On Windows
+docker run -v %cd%/packages:/rchk/packages kalibera/rchk /rchk/packages/lazy_1.2-16.tar.gz
+```
