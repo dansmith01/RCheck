@@ -46,7 +46,7 @@ export R_PACKAGE=hdf5lib
 export GITHUB_REPO="cmmr/${R_PACKAGE}"
 export VALGRIND_ARGS="--tool=memcheck --leak-check=full --track-origins=yes"
 apt update
-apt install -y git libcurl4-openssl-dev
+apt install -y git libcurl4-openssl-dev valgrind
 git clone "https://github.com/${GITHUB_REPO}.git"
 R -q -e "install.packages('pak', repos = 'https://r-lib.github.io/p/pak/stable/source/linux-gnu/x86_64')"
 R -q -e "pak::local_install_dev_deps('$R_PACKAGE')"
