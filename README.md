@@ -44,13 +44,14 @@ docker pull rocker/r-base
 docker run -it rocker/r-base bash
 export R_PACKAGE=hdf5lib
 export GITHUB_REPO="cmmr/${R_PACKAGE}"
+export VALGRIND_ARGS="--tool=memcheck --leak-check=full --track-origins=yes"
 apt update
 apt install -y git libcurl4-openssl-dev
 git clone "https://github.com/${GITHUB_REPO}.git"
 R -q -e "install.packages('pak', repos = 'https://r-lib.github.io/p/pak/stable/source/linux-gnu/x86_64')"
 R -q -e "pak::local_install_dev_deps('$R_PACKAGE')"
 cd "$R_PACKAGE"
-R -d "valgrind --tool=memcheck --leak-check=full --track-origins=yes" --vanilla -e 'testthat::test_local()' > valgrind_log.txt 2>&1
+R -d "valgrind $VALGRIND_ARGS" --vanilla -e 'testthat::test_local()' > valgrind_log.txt 2>&1
 ```
 
 ### Alpine Linux (`musl`)
