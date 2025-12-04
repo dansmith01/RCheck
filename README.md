@@ -74,7 +74,7 @@ find . -name '00install.out' -exec cat {} +
 
 ### Static Code Analysis (`rchk`)
 
-*From https://github.com/kalibera/cran-checks/tree/master/rchk#readme*
+*From https://github.com/kalibera/cran-checks/tree/master/rchk#readme and https://github.com/kalibera/rchk*
 
 ```sh
 docker pull kalibera/rchk
