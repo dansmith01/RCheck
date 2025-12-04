@@ -42,8 +42,8 @@ rhub::rhub_check(platforms = c(
 ```sh
 docker pull rocker/r-base
 docker run -it rocker/r-base bash
-export R_PACKAGE=hdf5lib
-export GITHUB_REPO="cmmr/${R_PACKAGE}"
+export GITHUB_REPO=cmmr/hdf5lib
+export R_PACKAGE=$(basename "$GITHUB_REPO")
 export VALGRIND_ARGS="--tool=memcheck --leak-check=full --track-origins=yes"
 apt update
 apt install -y git libcurl4-openssl-dev valgrind
@@ -58,8 +58,8 @@ R -d "valgrind $VALGRIND_ARGS" --vanilla -e 'testthat::test_local()' > valgrind_
 ```sh
 docker pull rhub/r-minimal
 docker run -it rhub/r-minimal bash
-export R_PACKAGE=hdf5lib
-export GITHUB_REPO="cmmr/${R_PACKAGE}"
+export GITHUB_REPO=cmmr/hdf5lib
+export R_PACKAGE=$(basename "$GITHUB_REPO")
 export RCMDCHECK_ERROR_ON=warning
 export NOT_CRAN=true
 export _R_CHECK_CRAN_INCOMING_=false
