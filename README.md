@@ -42,14 +42,13 @@ rhub::rhub_check(platforms = c(
 ```sh
 docker pull rocker/r-base
 docker run -it rocker/r-base bash
-export GITHUB_REPO=cmmr/hdf5lib
 export R_PACKAGE=hdf5lib
+export GITHUB_REPO="cmmr/${R_PACKAGE}"
 apt update
-apt install git
+apt install -y git libcurl4-openssl-dev
 git clone "https://github.com/${GITHUB_REPO}.git"
-R -q -e "install.packages('pak')"
+R -q -e "install.packages('pak', repos = 'https://r-lib.github.io/p/pak/stable/source/linux-gnu/x86_64')"
 R -q -e "pak::local_install_dev_deps('$R_PACKAGE')"
-R -q -e "pak::pak('testthat')"
 cd "$R_PACKAGE"
 R -d "valgrind --tool=memcheck --leak-check=full --track-origins=yes" --vanilla -e 'testthat::test_local()' > valgrind_log.txt 2>&1
 ```
@@ -58,8 +57,8 @@ R -d "valgrind --tool=memcheck --leak-check=full --track-origins=yes" --vanilla 
 ```sh
 docker pull rhub/r-minimal
 docker run -it rhub/r-minimal bash
-export GITHUB_REPO=cmmr/hdf5lib
 export R_PACKAGE=hdf5lib
+export GITHUB_REPO="cmmr/${R_PACKAGE}"
 export RCMDCHECK_ERROR_ON=warning
 export NOT_CRAN=true
 export _R_CHECK_CRAN_INCOMING_=false
