@@ -9,12 +9,14 @@
 * https://win-builder.r-project.org/upload.aspx
 
 
-## `r-lib` GitHub Actions
+## GitHub Actions
+
+### `r-lib` Builders
 
 * `usethis::use_github_action_check_standard()`
 
 
-## `rhub` GitHub Actions
+### `rhub` Builders
 
 ```r
 rhub::rhub_setup()
