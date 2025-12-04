@@ -1,9 +1,11 @@
 
-## CRAN Special Checks
+## CRAN 
+
+### Special Checks
 
 * https://cran.r-project.org/web/checks/check_issue_kinds.html
 
-## CRAN Hosted Builders
+### CRAN-Hosted Builders
 
 * https://mac.r-project.org/macbuilder/submit.html
 * https://win-builder.r-project.org/upload.aspx
@@ -13,7 +15,9 @@
 
 ### `r-lib` Builders
 
-* `usethis::use_github_action_check_standard()`
+```r
+usethis::use_github_action_check_standard()
+```
 
 
 ### `rhub` Builders
