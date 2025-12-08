@@ -78,10 +78,11 @@ find . -name '00install.out' -exec cat {} +
 
 ```sh
 docker pull kalibera/rchk
-mkdir packages
-cp lazy_1.2-16.tar.gz packages
-# On Unix
-docker run -v `pwd`/packages:/rchk/packages kalibera/rchk /rchk/packages/lazy_1.2-16.tar.gz 
+mkdir rchk
+R CMD build ecodive
+cp ecodive_2.2.1.tar.gz ecodive/rchk
+# On Unix (not git bash for windows)
+docker run -v `pwd`/ecodive/rchk:/rchk/packages kalibera/rchk /rchk/packages/ecodive_2.2.1.tar.gz 
 # On Windows
-docker run -v %cd%/packages:/rchk/packages kalibera/rchk /rchk/packages/lazy_1.2-16.tar.gz
+docker run -v %cd%/ecodive/rchk:/rchk/packages kalibera/rchk /rchk/packages/ecodive_2.2.1.tar.gz
 ```
